@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CANIFA S - The Sensory Flow</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-ecru: #E8E3D9;
+            --color-olive: #535A3B;
+            --color-sepia: #5A4634;
+            --color-washed-black: #333333;
+        }
+        
+        /* Nhúng Font chữ Custom cho Tiêu đề */
+        @font-face {
+            font-family: 'KKTT Seraphytes';
+            src: url('https://raw.githubusercontent.com/SuperAgento/canifaS_tr-ng-i-nonstop/fcaecb14d277ac8c177ba42c832ffdfdc283fbfa/Ch%C6%B0%C6%A1ng%20I/KKTT%20Seraphytes.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Hoa Sen';
+            src: url('https://raw.githubusercontent.com/SuperAgento/canifaS_tr-ng-i-nonstop/d4ea3fa36960f54afce9b31bc9bb9b736d45cbba/Hoa%20Sen%20Typeface.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Classique Saigon';
+            src: url('https://raw.githubusercontent.com/SuperAgento/canifaS_tr-ng-i-nonstop/fcaab77bcac3bb45101464627f387a8193082d7f/Ch%C6%B0%C6%A1ng%20III/ClassiqueSaigon%20Full.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        .font-custom-title {
+            font-family: 'KKTT Seraphytes', serif;
+        }
+
+        .font-custom-title-2 {
+            font-family: 'Hoa Sen', serif;
+        }
+
+        .font-custom-title-3 {
+            font-family: 'Classique Saigon', serif;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #FDFBF7;
+            color: #333333;
+            overflow-x: hidden;
+        }
+
+        .font-serif-custom {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        /* Intro Animations */
+        .intro-layer {
+            transition: opacity 1.2s ease-in-out;
+        }
+
+        .typing-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 0.9em;
+            background-color: #333333;
+            animation: blink 0.8s step-end infinite;
+            vertical-align: baseline;
+            margin-left: 4px;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Timeline Navigation */
+        .nav-item {
+            position: relative;
+            cursor: pointer;
+            padding-bottom: 10px;
+            transition: all 0.3s ease;
+            color: #a3a3a3;
+        }
+        
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: transparent;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-item.active {
+            color: var(--color-washed-black);
+            font-weight: 600;
+        }
+
+        .nav-item.active::after {
+            background-color: var(--color-olive);
+        }
+
+        /* Hover effects for images */
+        .image-card {
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        
+        .image-card img {
+            transition: transform 0.7s ease;
+        }
+        
+        .image-card:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Scroll Animation Classes */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .scroll-animate.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--color-ecru);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-olive);
+            border-radius: 4px;
+        }
+        
+        .chapter-content {
+            display: none;
+            animation: fadeIn 1s ease-in forwards;
+        }
+        
+        .chapter-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================= INTRO SEQUENCE ================= -->
+    <div id="intro-screen" class="fixed inset-0 z-50 bg-[#FDFBF7] flex items-center justify-center cursor-pointer intro-layer px-4 text-center">
+        
+        <!-- Text container for Typewriter effect -->
+        <p id="typewriter-container"></p>
+
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center opacity-60 animate-pulse text-[#333333]">
+            <span class="text-xs uppercase tracking-widest mb-2 font-mono">Click để tiếp tục</span>
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 9l-7 7-7-7"></path></svg>
+        </div>
+    </div>
+
+
+    <!-- ================= MAIN APPLICATION ================= -->
+    <div id="main-app" class="hidden min-h-screen bg-[#FDFBF7] text-[#333333]">
+        
+        <!-- Navigation Timeline -->
+        <header class="sticky top-0 z-40 bg-[#FDFBF7]/95 backdrop-blur-sm border-b border-[#5A4634]/20">
+            <div class="max-w-7xl mx-auto px-4 md:px-6 py-4 md:py-6">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-6">
+                    <div class="text-xl md:text-2xl font-black tracking-tighter">CANIFA <span class="text-[#535A3B]">S</span></div>
+                    
+                    <nav class="w-full md:w-auto overflow-x-auto pb-2 md:pb-0">
+                        <ul class="flex space-x-6 md:space-x-12 min-w-max text-xs md:text-sm uppercase tracking-widest font-semibold px-2">
+                            <li class="nav-item active" onclick="switchChapter(1)">Chương I: The Origin</li>
+                            <li class="nav-item" onclick="switchChapter(2)">Chương II: The Sovereignty</li>
+                            <li class="nav-item" onclick="switchChapter(3)">Chương III: The Fusion</li>
+                            <li class="nav-item" onclick="switchChapter(4)">Chương IV: The Pulse</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <main class="max-w-7xl mx-auto px-4 md:px-6 py-8 md:py-12">
+            
+            <!-- ================= CHAPTER 1: THE ORIGIN ================= -->
+            <section id="chapter-1" class="chapter-content active">
+                
+                <!-- Hero Title -->
+                <div class="text-center mb-12 md:mb-16 scroll-animate">
+                    <h2 class="font-serif-custom italic text-[#535A3B] text-xl md:text-3xl mb-2 md:mb-4">The Origin</h2>
+                    <h1 class="font-custom-title text-6xl md:text-8xl md:text-[100px] uppercase mb-4 md:mb-6 leading-none">Khởi</h1>
+                    <p class="font-custom-title text-3xl md:text-5xl text-[#5A4634]">Tiếng vọng khởi nguyên</p>
+                </div>
+
+                <!-- Story Quote -->
+                <div class="max-w-4xl mx-auto text-center mb-16 md:mb-24 scroll-animate delay-100 px-4">
+                    <p class="font-custom-title text-2xl md:text-4xl text-[#333333] leading-relaxed">
+                        "Là khi ông chạm vào mặt vải thô, thấy những đường nét kỷ hà của trống đồng Đông Sơn được tối giản. Đó là tiếng gọi từ đất mẹ, là sự tự tin về nguồn gốc 'con Rồng cháu Tiên' đầy mạnh mẽ và hoang sơ."
+                    </p>
+                </div>
+
+                <!-- Concept & Color Palette -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 mb-16 md:mb-24 items-start">
+                    <div class="scroll-animate">
+                        <h3 class="text-xs uppercase tracking-widest text-gray-500 mb-2">Chất liệu & Cảm giác</h3>
+                        <p class="text-xl md:text-2xl font-serif-custom italic mb-4 md:mb-6">Sự vững chãi, thô mộc.</p>
+                        <p class="mb-6 md:mb-8 text-sm md:text-base leading-relaxed">
+                            Sử dụng vải <span class="font-bold">Organic Cotton</span> và <span class="font-bold">Linen</span>, bộ trang phục mang lại cảm giác nguyên bản nhất của tự nhiên, tôn vinh nét hoang sơ của cội nguồn.
+                        </p>
+                        
+                        <h3 class="text-xs uppercase tracking-widest text-gray-500 mb-4 md:mb-6">Bảng màu sắc</h3>
+                        <div class="space-y-4 md:space-y-6">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-[#E8E3D9] border border-gray-300 shadow-inner flex-shrink-0"></div>
+                                <div>
+                                    <h4 class="font-bold text-base md:text-lg">Be mộc (Oatmeal/Ecru)</h4>
+                                    <p class="text-xs md:text-sm mt-1 text-gray-600">Màu nền chủ đạo (#E8E3D9). Đại diện cho "Đất Mẹ". Màu nguyên bản của sợi bông, lanh chưa qua tẩy nhuộm.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-[#535A3B] shadow-inner flex-shrink-0"></div>
+                                <div>
+                                    <h4 class="font-bold text-base md:text-lg">Xanh rêu Đông Sơn (Dong Son Olive)</h4>
+                                    <p class="text-xs md:text-sm mt-1 text-gray-600">Màu họa tiết (#535A3B). Tượng trưng rêu phong mặt trống đồng và sức sống mãnh liệt đầm lầy.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-[#333333] shadow-inner flex-shrink-0 relative overflow-hidden">
+                                    <div class="absolute inset-0 bg-[#5A4634] w-1/2"></div>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-base md:text-lg">Nâu mộc bản / Đen phai</h4>
+                                    <p class="text-xs md:text-sm mt-1 text-gray-600">Màu dải viền. Tái hiện mực xăm cổ đại hoặc nét khắc. Điểm nhấn bản ngã kiên định.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Main Model Image (Đã bỏ khung) -->
+                    <div class="scroll-animate delay-200 flex flex-col items-center justify-center">
+                        <img src="https://raw.githubusercontent.com/SuperAgento/canifaS_tr-ng-i-nonstop/c438a62dc2fa21dbd68882bf5cc747313a0cbf99/Ch%C6%B0%C6%A1ng%20I/m%E1%BA%ABu%20%E1%BA%A3nh.png" alt="Mẫu ảnh trang phục" class="w-full h-auto max-h-[450px] object-contain transition-transform duration-700 hover:scale-105 drop-shadow-2xl">
+                        <div class="mt-4 text-center">
+                            <p class="font-serif-custom text-lg md:text-xl italic text-[#333]">Lookbook Chương I</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Products & Motifs Showcase -->
+                <div class="mt-16 md:mt-32">
+                    <h3 class="text-center text-2xl md:text-3xl font-black uppercase tracking-widest mb-10 md:mb-16 scroll-animate">Chuyển hóa Di sản</h3>
+                    
+                    <!-- Item 1: Áo x Chim Lạc x Trống Đồng -->
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 mb-16 md:mb-24 items-center">
+                        <div class="md:col-span-5 order-2 md:order-1 scroll-animate flex flex-col items-center">
+                            <img src="https://raw.githubusercontent.com/SuperAgento/canifaS_tr-ng-i-nonstop/c438a62dc2fa21dbd68882bf5cc747313a0cbf99/Ch%C6%B0%C6%A1ng%20I/%C3%A1o.png" alt="Áo thiết kế" class="w-full h-auto object-contain max-h-[300px] md:max-h-[400px] transition-transform duration-700 hover:scale-105 drop-shadow-lg">
+                            <p class="text-center font-bold mt-4 uppercase tracking-widest text-[#535A3B] text-sm md:text-base">Áo Khởi Nguyên</p>
+                        </div>
+                        <div class="md:col-span-7 order-1 md:order-2 space-y-6 md:space-y-8 scroll-animate delay-200">
+                            <div class="bg-[#f2eee6] p-5 md:p-8 rounded-xl relative overflow-hidden">
+                                <div class="flex flex-col sm:flex-row items-start gap-4 md:gap-6 relative z-10">
+                                    <div class="w-20 h-20 md:w-24 md:h-24 flex-shrink-0 bg-white p-2 rounded-full shadow-md mx-auto sm:mx-0">
+                                        <img src="https://raw.githubusercontent.com/SuperAgento/canifaS_tr-ng-i-nonstop/c438a62dc2fa21dbd68882bf5cc747313a0cbf99/Ch%C6%B0%C6%A1ng%20I/con%20h%E1%BA%A1c.png" alt="Chim Lạc" class="w-full h-full object-contain">
+                                    </div>
+                                    <div class="text-center sm:text-left">
+                                        <h4 class="text-xl md:text-2xl font-serif-custom font-bold text-[#535A3B] mb-2">Họa tiết Chim Lạc</h4>
+                                        <p class="text-xs md:text-sm leading-relaxed text-gray-700">Vật tổ của cư dân Lạc Việt, thường xuất hiện với tư thế sải cánh bay ngược chiều kim đồng hồ trên mặt trống đồng. Biểu trưng cội nguồn dân tộc.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-[#f2eee6] p-5 md:p-8 rounded-xl relative overflow-hidden">
+                                <div class="flex flex-col sm:flex-row items-start gap-4 md:gap-6 relative z-10">
+                                    <div class="w-20 h-20 md:w-24 md:h-24 flex-shrink-0 bg-white p-2 rounded-full shadow-md mx-auto sm:mx-0">
+                                        <img src="https://raw.githubusercontent.com/SuperAgento/canifaS_tr-ng-i-nonstop/c438a62dc2fa21dbd68882bf5cc747313a0cbf99/Ch%C6%B0%C6%A1ng%20I/tr%E1%BB%91ng%20%C4%91%E1%BB%93ng.png" alt="Trống đồng" class="w-full h-full object-contain">
+                                    </div>
+                                    <div class="text-center sm:text-left">
+                                        <h4 class="text-xl md:text-2xl font-serif-custom font-bold text-[#535A3B] mb-2">Họa tiết Trống Đồng</h4>
+                                        <p class="text-xs md:text-sm leading-relaxed text-gray-700">Biểu tượng quyền lực tâm linh. Trung tâm là ngôi sao thần Mặt Trời, các vòng đồng tâm thể hiện vũ trụ quan văn minh lúa nước.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 2: Quần x Giao Long -->
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 mb-16 md:mb-24 items-center">
+                        <div class="md:col-span-7 space-y-6 md:space-y-8 scroll-animate">
+                            <div class="bg-[#f2eee6] p-5 md:p-8 rounded-xl relative overflow-hidden">
+                                <div class="flex flex-col sm:flex-row items-start gap-4 md:gap-6 relative z-10">
+                                    <div class="w-20 h-20 md:w-24 md:h-24 flex-shrink-0 bg-white p-2 rounded-full shadow-md mx-auto sm:mx-0">
+                                        <img src="https://raw.githubusercontent.com/SuperAgento/canifaS_tr-ng-i-nonstop/c438a62dc2fa21dbd68882bf5cc747313a0cbf99/Ch%C6%B0%C6%A1ng%20I/giao%20long.png" alt="Giao Long" class="w-full h-full object-contain">
+                                    </div>
+                                    <div class="text-center sm:text-left">
+                                        <h4 class="text-xl md:text-2xl font-serif-custom font-bold text-[#535A3B] mb-2">Họa tiết Giao Long</h4>
+                                        <p class="text-xs md:text-sm leading-relaxed text-gray-700">Linh vật thống trị sông nước thần thoại Việt cổ. Gắn liền tục xăm mình tránh thủy quái, mang ý nghĩa bảo hộ, sức mạnh nguyên thủy.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="md:col-span-5 scroll-animate delay-200 flex flex-col items-center">
+                            <img src="https://raw.githubusercontent.com/SuperAgento/canifaS_tr-ng-i-nonstop/c438a62dc2fa21dbd68882bf5cc747313a0cbf99/Ch%C6%B0%C6%A1ng%20I/qu%E1%BA%A7n.png" alt="Quần thiết kế" class="w-full h-auto object-contain max-h-[300px] md:max-h-[400px] transition-transform duration-700 hover:scale-105 drop-shadow-lg">
+                            <p class="text-center font-bold mt-4 uppercase tracking-widest text-[#535A3B] text-sm md:text-base">Quần Giao Long</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 3: Túi Tote -->
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center border-t border-[#5A4634]/20 pt-12 md:pt-16">
+                        <div class="md:col-span-4 scroll-animate flex flex-col items-center">
+                            <img src="https://raw.githubusercontent.com/SuperAgento/canifaS_tr-ng-i-nonstop/c438a62dc2fa21dbd68882bf5cc747313a0cbf99/Ch%C6%B0%C6%A1ng%20I/t%C3%BAi%20tote.png" alt="Túi Tote" class="w-full h-auto object-contain max-h-[250px] md:max-h-[300px] transition-transform duration-700 hover:scale-105 drop-shadow-lg">
+                        </div>
+                        <div class="md:col-span-8 text-center md:text-left mt-6 md:mt-0 scroll-animate delay-200">
+                            <span class="bg-[#535A3B] text-white text-[10px] md:text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider inline-block">Gift Collection</span>
+                            <h4 class="text-2xl md:text-3xl font-serif-custom font-bold text-[#333] mt-4 mb-3 md:mb-4">Túi Tote Trống Đồng</h4>
+                            <p class="text-sm md:text-base leading-relaxed text-gray-700 mb-6 md:mb-8">Món quà tặng kèm giới hạn khi sở hữu trọn bộ set trang phục Chương I. Mang trọn vẹn tinh thần và biểu tượng quyền lực văn minh Đông Sơn dạo bước phố phường.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= CHAPTER 2: THE SOVEREIGNTY ================= -->
+            <section id="chapter-2" class="chapter-content">
+                
+                <!-- Hero Title -->
+                <div class="text-center mb-12 md:mb-16 scroll-animate">
+                    <h2 class="font-serif-custom italic text-[#9EABA2] text-xl md:text-3xl mb-2 md:mb-4">The Sovereignty</h2>
+                    <h1 class="font-custom-title-2 text-6xl md:text-8xl md:text-[100px] uppercase mb-4 md:mb-6 leading-none text-[#1E2A38]">Độc Tôn</h1>
+                    <p class="font-custom-title-2 text-3xl md:text-5xl text-[#6B4C3A]">Hào khí Đông A</p>
+                </div>
+
+                <!-- Story Quote -->
+                <div class="max-w-5xl mx-auto text-center mb-16 md:mb-24 scroll-animate delay-100 px-4">
+                    <p class="font-custom-title-2 text-2xl md:text-4xl text-[#7A3333] leading-relaxed">
+                        "Khi dòng chảy thời gian đưa ta đến thời Lý - Trần. Họa tiết sóng nước cuộn sóng trên gấu áo, biểu trưng sự luân chuyển không ngừng của sự sống.<br><br>
+                        <span class="text-[#333333]">Thủy Ba thời Lý uốn lượn hình sin mềm mại, mang đậm tính Phật giáo; trong khi Thủy Ba thời Trần khỏe khoắn, mập mạp, gắn liền tinh thần thượng võ Đông A.</span>"
+                    </p>
+                </div>
+
+                <!-- Concept & Color Palette: Center Model Layout -->
+                <div class="scroll-animate mb-16 md:mb-24 border-b border-[#6B4C3A]/20 pb-16">
+                    <div class="text-center mb-10">
+                        <h3 class="text-xs uppercase tracking-widest text-[#9EABA2] mb-2 font-bold">Phong thái & Cảm giác</h3>
+                        <p class="text-xl md:text-2xl font-serif-custom italic text-[#6B4C3A]">Quý tộc phố thị, tĩnh lặng và uy quyền.</p>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row gap-10 md:gap-4 items-center justify-center">
+                        <!-- Left Colors -->
+                        <div class="md:w-1/3 flex flex-col space-y-6 order-2 md:order-1 px-4">
+                            <div class="flex flex-row md:flex-row-reverse items-start gap-4 text-left md:text-right">
+                                <div class="w-12 h-12 rounded-full bg-[#9EABA2] shadow-inner flex-shrink-0 border border-gray-300"></div>
+                                <div>
+                                    <h4 class="font-bold text-base md:text-lg text-[#9EABA2]">Xanh Men Ngọc</h4>
+                                    <p class="text-xs md:text-sm mt-1 text-gray-600">Đỉnh cao mỹ thuật thời Lý. Thiền định, êm ái, vô cùng sang trọng.</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-row md:flex-row-reverse items-start gap-4 text-left md:text-right">
+                                <div class="w-12 h-12 rounded-full bg-[#6B4C3A] shadow-inner flex-shrink-0"></div>
+                                <div>
+                                    <h4 class="font-bold text-base md:text-lg text-[#6B4C3A]">Nâu Hoa Nâu</h4>
+                                    <p class="text-xs md:text-sm mt-1 text-gray-600">Màu gốm Hoa Nâu mạnh mẽ. Kiên cường, thượng võ của Hào khí Đông A.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Center Model -->
+                        <div class="md:w-1/3 order-1 md:order-2 flex flex-col items-center justify-center">
+                            <img src="https://raw.githubusercontent.com/SuperAgento/canifaS_tr-ng-i-nonstop/d4ea3fa36960f54afce9b31bc9bb9b736d45cbba/Ch%C6%B0%C6%A1ng%20II/m%E1%BA%ABu%20%E1%BA%A3nh.png" alt="Mẫu ảnh Chương II" class="w-full max-w-[260px] md:max-w-[320px] h-auto object-contain transition-transform duration-700 hover:scale-105 drop-shadow-2xl">
+                        </div>
+
+                        <!-- Right Colors -->
+                        <div class="md:w-1/3 flex flex-col space-y-6 order-3 px-4">
+                            <div class="flex items-start gap-4 text-left">
+                                <div class="w-12 h-12 rounded-full bg-[#1E2A38] shadow-inner flex-shrink-0"></div>
+                                <div>
+                                    <h4 class="font-bold text-base md:text-lg text-[#1E2A38]">Xanh Chàm Sâu</h4>
+                                    <p class="text-xs md:text-sm mt-1 text-gray-600">Dung hòa truyền thống và đô thị. Tôn vinh phong thái chững chạc.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4 text-left">
+                                <div class="w-12 h-12 rounded-full bg-[#B59A6D] shadow-inner flex-shrink-0"></div>
+                                <div>
+                                    <h4 class="font-bold text-base md:text-lg text-[#B59A6D]">Vàng Đồng Cổ</h4>
+                                    <p class="text-xs md:text-sm mt-1 text-gray-600">Sắc vàng phai màu là tuyên ngôn tinh tế. Dành cho vật liệu phụ trợ.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Products & Motifs Showcase -->
+                <div class="mt-16 md:mt-32">
+                    <h3 class="text-center text-2xl md:text-3xl font-black uppercase tracking-widest mb-10 md:mb-16 scroll-animate text-[#1E2A38]">Chuyển hóa Di sản</h3>
+                    
+                    <!-- Item 1: Áo Sơ mi -->
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 mb-16 md:mb-24 items-center">
+                        <div class="md:col-span-5 order-2 md:order-1 scroll-animate flex flex-col items-center">
+                            <img src="https://raw.githubusercontent.com/SuperAgento/canifaS_tr-ng-i-nonstop/d4ea3fa36960f54afce9b31bc9bb9b736d45cbba/Ch%C6%B0%C6%A1ng%20II/%C3%A1o.png" alt="Áo Sơ mi Boxy" class="w-full h-auto object-contain max-h-[300px] md:max-h-[400px] transition-transform duration-700 hover:scale-105 drop-shadow-lg">
+                            <div class="text-center mt-6">
+                                <h4 class="font-bold uppercase tracking-widest text-[#9EABA2] text-sm md:text-base">Áo Sơ mi Boxy</h4>
+                                <p class="text-sm text-[#B59A6D] font-serif-custom italic">"Giao Lĩnh Cách Tân"</p>
+                            </div>
+                        </div>
+                        <div class="md:col-span-7 order-1 md:order-2 space-y-6 md:space-y-8 scroll-animate delay-200">
+                            <!-- Họa tiết Cổ Áo -->
+                            <div class="bg-[#f2eee6] p-5 md:p-8 rounded-xl relative overflow-hidden border-l-4 border-[#9EABA2]">
+                                <div class="flex flex-col sm:flex-row items-start gap-4 md:gap-6 relative z-10">
+                                    <div class="w-20 h-20 md:w-24 md:h-24 flex-shrink-0 bg-white p-2 rounded-full shadow-md mx-auto sm:mx-0">
+                                        <img src="https://raw.githubusercontent.com/SuperAgento/canifaS_tr-ng-i-nonstop/d4ea3fa36960f54afce9b31bc9bb9b736d45cbba/Ch%C6%B0%C6%A1ng%20II/ht%20c%E1%BB%95%20%C3%A1o.png" alt="Cấu trúc Cổ áo" class="w-full h-full object-contain">
+                                    </div>
+                                    <div class="text-center sm:text-left">
+                                        <h4 class="text-xl md:text-2xl font-custom-title-2 text-[#1E2A38] mb-2">Cấu trúc Cổ áo</h4>
+                                        <p class="text-xs md:text-sm leading-relaxed text-gray-700">Bước "giải cấu trúc" mượt mà từ áo Giao Lĩnh cổ đại. Cổ áo mở rộng thành dáng cổ bẻ/cổ V sâu bất đối xứng nhẹ, vừa giữ nét chéo xẻ, vừa thoáng mát.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Họa tiết Thủy Ba -->
+                            <div class="bg-[#f2eee6] p-5 md:p-8 rounded-xl relative overflow-hidden border-l-4 border-[#6B4C3A]">
+                                <div class="flex flex-col sm:flex-row items-start gap-4 md:gap-6 relative z-10">
+                                    <div class="w-20 h-20 md:w-24 md:h-24 flex-shrink-0 bg-white p-2 rounded-full shadow-md mx-auto sm:mx-0">
+                                        <img src="https://raw.githubusercontent.com/SuperAgento/canifaS_tr-ng-i-nonstop/d4ea3fa36960f54afce9b31bc9bb9b736d45cbba/Ch%C6%B0%C6%A1ng%20II/ht%20ch%C3%ACm.png" alt="Thủy Ba in chìm" class="w-full h-full object-contain">
+                                    </div>
+                                    <div class="text-center sm:text-left">
+                                        <h4 class="text-xl md:text-2xl font-custom-title-2 text-[#1E2A38] mb-2">Thủy Ba in chìm</h4>
+                                        <p class="text-xs md:text-sm leading-relaxed text-gray-700">Cảm hứng sóng nước Thủy Ba. Xử lý dập nổi/dệt chìm (Jacquard) tràn viền, tạo bề mặt bóng - mờ đan xen mang vẻ đẹp tinh xảo.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 2: Quần Cargo -->
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 mb-16 md:mb-24 items-center">
+                        <div class="md:col-span-7 space-y-6 md:space-y-8 scroll-animate">
+                            <div class="bg-[#f2eee6] p-5 md:p-8 rounded-xl relative overflow-hidden border-l-4 border-[#B59A6D]">
+                                <div class="flex flex-col sm:flex-row items-start gap-4 md:gap-6 relative z-10">
+                                    <div class="w-20 h-20 md:w-24 md:h-24 flex-shrink-0 bg-white p-2 rounded-full shadow-md mx-auto sm:mx-0">
+                                        <img src="https://raw.githubusercontent.com/SuperAgento/canifaS_tr-ng-i-nonstop/d4ea3fa36960f54afce9b31bc9bb9b736d45cbba/Ch%C6%B0%C6%A1ng%20II/ht%20qu%E1%BA%A7n.png" alt="Dải viền quần" class="w-full h-full object-contain">
+                                    </div>
+                                    <div class="text-center sm:text-left">
+                                        <h4 class="text-xl md:text-2xl font-custom-title-2 text-[#1E2A38] mb-2">Dải viền hoa văn</h4>
+                                        <p class="text-xs md:text-sm leading-relaxed text-gray-700">Hoa văn chạm khắc hoàng gia thêu bằng chỉ bóng Vàng Đồng Cổ. Đặt dọc đường seam quần mang tinh thần thể thao khoe trọn di sản.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="md:col-span-5 scroll-animate delay-200 flex flex-col items-center">
+                            <img src="https://raw.githubusercontent.com/SuperAgento/canifaS_tr-ng-i-nonstop/d4ea3fa36960f54afce9b31bc9bb9b736d45cbba/Ch%C6%B0%C6%A1ng%20II/qu%E1%BA%A7n.png" alt="Quần Cargo" class="w-full h-auto object-contain max-h-[300px] md:max-h-[400px] transition-transform duration-700 hover:scale-105 drop-shadow-lg">
+                            <div class="text-center mt-6">
+                                <h4 class="font-bold uppercase tracking-widest text-[#1E2A38] text-sm md:text-base">Quần Cargo</h4>
+                                <p class="text-sm text-[#7A3333] font-serif-custom italic">"Đông A Tráng Sĩ"</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 3: Phụ kiện -->
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center border-t border-[#6B4C3A]/20 pt-12 md:pt-16">
+                        <div class="md:col-span-5 scroll-animate flex flex-col items-center">
+                            <img src="https://raw.githubusercontent.com/SuperAgento/canifaS_tr-ng-i-nonstop/d4ea3fa36960f54afce9b31bc9bb9b736d45cbba/Ch%C6%B0%C6%A1ng%20II/ph%E1%BB%A5%20ki%E1%BB%87n.png" alt="Phụ kiện Quý tộc phố thị" class="w-full h-auto object-contain max-h-[300px] md:max-h-[400px] transition-transform duration-700 hover:scale-105 drop-shadow-lg">
+                        </div>
+                        <div class="md:col-span-7 text-center md:text-left mt-6 md:mt-0 scroll-animate delay-200">
+                            <span class="bg-[#B59A6D] text-white text-[10px] md:text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider inline-block">Accessories</span>
+                            <h4 class="text-2xl md:text-3xl font-custom-title-2 text-[#7A3333] mt-4 mb-4">Hoàn thiện phong thái "Quý tộc phố thị"</h4>
+                            <p class="text-sm md:text-base leading-relaxed text-gray-700">Kính râm gọng kim loại mạ vàng đồng. Vòng tay kết hợp đá nhám và hạt kim loại chạm khắc. Điểm xuyết dây chuyền ấn triện dây bện màu đỏ thẫm giúp cân bằng sắc trầm của bộ trang phục.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= CHAPTER 3: THE FUSION ================= -->
+            <section id="chapter-3" class="chapter-content">
+                
+                <!-- Hero Title -->
+                <div class="text-center mb-12 md:mb-16 scroll-animate">
+                    <h2 class="font-serif-custom italic text-[#88A4A1] text-xl md:text-3xl mb-2 md:mb-4">The Fusion</h2>
+                    <h1 class="font-custom-title-3 text-6xl md:text-8xl md:text-[100px] uppercase mb-4 md:mb-6 leading-none text-[#35322F]">GIAO</h1>
+                    <p class="font-custom-title-3 text-3xl md:text-5xl text-[#E2B465]">Bản giao hưởng ký ức</p>
+                </div>
+
+                <!-- Story Quote -->
+                <div class="max-w-5xl mx-auto text-center mb-16 md:mb-24 scroll-animate delay-100 px-4">
+                    <p class="font-custom-title-3 text-2xl md:text-4xl text-[#35322F] leading-relaxed">
+                        "Sự lãng mạn, ấm áp. Sự chuyển mình của Việt Nam đầu thế kỷ 20, nơi cái cũ và cái mới bắt đầu va chạm và hòa quyện.<br><br>
+                        <span class="text-[#88A4A1]">Chương của sự thấu hiểu, nơi chất Việt học cách dung hòa với thế giới nhưng vẫn giữ bản sắc riêng.</span>"
+                    </p>
+                </div>
+
+                <!-- Concept & Color Palette: Center Model Layout -->
+                <div class="scroll-animate mb-16 md:mb-24 border-b border-[#E2B465]/30 pb-16">
+                    <div class="text-center mb-10">
+                        <h3 class="text-xs uppercase tracking-widest text-[#88A4A1] mb-2 font-bold">Bảng màu chủ đạo (The Fusion Palette)</h3>
+                        <p class="text-xl md:text-2xl font-serif-custom italic text-[#35322F]">Lãng mạn, va chạm Đông - Tây trên tông màu Pastel làm mờ (Washed out).</p>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row gap-10 md:gap-4 items-center justify-center">
+                        
+                        <!-- Left Colors (Căn lề phải trên Desktop) -->
+                        <div class="md:w-1/3 flex flex-col space-y-6 order-2 md:order-1 px-4">
+                            <!-- Color 1 -->
+                            <div class="flex flex-row md:flex-row-reverse items-start gap-4 text-left md:text-right">
+                                <div class="w-12 h-12 rounded-full bg-[#F4EFE6] shadow-inner flex-shrink-0 border border-gray-300"></div>
+                                <div>
+                                    <h4 class="font-bold text-base md:text-lg text-[#35322F]">Giấy Dó (Parchment Cream)</h4>
+                                    <p class="text-xs md:text-sm mt-1 text-gray-600">Tái hiện màu trang sách cũ hoặc vôi ve đã phai. Làm nền hoàn hảo nổi bật nét vẽ ký họa.</p>
+                                </div>
+                            </div>
+                            <!-- Color 2 -->
+                            <div class="flex flex-row md:flex-row-reverse items-start gap-4 text-left md:text-right">
+                                <div class="w-12 h-12 rounded-full bg-[#E2B465] shadow-inner flex-shrink-0"></div>
+                                <div>
+                                    <h4 class="font-bold text-base md:text-lg text-[#E2B465]">Vàng Nghệ Cổ (Indochine Mustard)</h4>
+                                    <p class="text-xs md:text-sm mt-1 text-gray-600">Đặc trưng kiến trúc Đông Dương. Mang cảm giác ấm áp, hoài niệm về mái ấm gia đình.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Center Model -->
+                        <div class="md:w-1/3 order-1 md:order-2 flex flex-col items-center justify-center relative">
+                            <!-- Hiệu ứng viền họa tiết phía sau ảnh model -->
+                            <div class="absolute inset-0 bg-[#F4EFE6] rounded-full scale-90 -z-10 blur-xl opacity-60"></div>
+                            <img src="https://raw.githubusercontent.com/SuperAgento/canifaS_tr-ng-i-nonstop/fc97f5ca5d2a5366899257dd37bfc6b68acf3e87/Ch%C6%B0%C6%A1ng%20III/m%E1%BA%ABu%20%E1%BA%A3nh.png" alt="Mẫu ảnh Chương III" class="w-full max-w-[280px] md:max-w-[340px] h-auto object-contain transition-transform duration-700 hover:scale-105 drop-shadow-[0_20px_25px_rgba(226,180,101,0.25)]">
+                        </div>
+
+                        <!-- Right Colors (Căn lề trái) -->
+                        <div class="md:w-1/3 flex flex-col space-y-6 order-3 px-4">
+                            <!-- Color 3 -->
+                            <div class="flex items-start gap-4 text-left">
+                                <div class="w-12 h-12 rounded-full bg-[#88A4A1] shadow-inner flex-shrink-0"></div>
+                                <div>
+                                    <h4 class="font-bold text-base md:text-lg text-[#88A4A1]">Xanh Gạch Bông (Vintage Teal)</h4>
+                                    <p class="text-xs md:text-sm mt-1 text-gray-600">Màu xanh lơ phai trên nền gạch cũ. Cân bằng sắc vàng nghệ, đại diện sự thanh lịch phương Tây.</p>
+                                </div>
+                            </div>
+                            <!-- Color 4 -->
+                            <div class="flex items-start gap-4 text-left">
+                                <div class="w-12 h-12 rounded-full bg-[#35322F] shadow-inner flex-shrink-0"></div>
+                                <div>
+                                    <h4 class="font-bold text-base md:text-lg text-[#35322F]">Mực Tàu (Iron-pen Sepia)</h4>
+                                    <p class="text-xs md:text-sm mt-1 text-gray-600">Giống màu mực bút sắt ký họa. Dùng cho họa tiết để tạo sự tương phản nghệ thuật sâu sắc.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <!-- Products & Motifs Showcase -->
+                <div class="mt-16 md:mt-32">
+                    <h3 class="text-center text-2xl md:text-3xl font-black uppercase tracking-widest mb-10 md:mb-16 scroll-animate text-[#E2B465]">Điểm chạm ký ức</h3>
+                    
+                    <!-- Khối 1: Áo, Ký họa, Nút thắt -->
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 mb-24 items-center">
+                        <!-- Cột Trái: Ảnh Áo -->
+                        <div class="md:col-span-5 order-2 md:order-1 scroll-animate flex flex-col items-center">
+                            <img src="https://raw.githubusercontent.com/SuperAgento/canifaS_tr-ng-i-nonstop/fc97f5ca5d2a5366899257dd37bfc6b68acf3e87/Ch%C6%B0%C6%A1ng%20III/%C3%A1o.png" alt="Áo Baby Tee/Boxy Shirt" class="w-full h-auto object-contain max-h-[350px] md:max-h-[450px] transition-transform duration-700 hover:scale-105 drop-shadow-[0_10px_20px_rgba(136,164,161,0.2)]">
+                            <div class="text-center mt-6">
+                                <h4 class="font-bold uppercase tracking-widest text-[#35322F] text-sm md:text-base">Baby Tee & Boxy Shirt</h4>
+                                <p class="text-sm text-[#88A4A1] font-serif-custom italic">Sự giao thoa Đông Tây</p>
+                            </div>
+                        </div>
+
+                        <!-- Cột Phải: Phân tích & Họa tiết -->
+                        <div class="md:col-span-7 order-1 md:order-2 space-y-6 scroll-animate delay-200">
+                            <!-- Phân tích phiên bản áo -->
+                            <div class="mb-8 px-2 md:px-0 text-center md:text-left">
+                                <p class="text-sm md:text-base leading-relaxed text-gray-700 mb-4">Cả nam và nữ đều sử dụng <strong>cổ Tàu (Mandarin collar) bản thấp</strong> thay thế cổ tròn thông thường, mang lại vẻ thanh lịch, hoài cổ nhưng form dáng boxy rộng rãi giúp giữ được nét hiện đại của Streetwear.</p>
+                                <ul class="text-sm md:text-base text-gray-700 space-y-3">
+                                    <li><span class="font-bold text-[#E2B465]">Phiên bản Tối giản (Màu Giấy Dó):</span> Điểm nhấn 1 nút thắt cổ, ngực trái in ký họa Hoa Quỳnh thanh tao.</li>
+                                    <li><span class="font-bold text-[#88A4A1]">Phiên bản Ấn tượng (In tràn):</span> In tràn toàn bộ gạch bông tông pastel. Áo xẻ ngực với 2 nút thắt dây thừng nghệ thuật.</li>
+                                </ul>
+                            </div>
+
+                            <!-- Họa tiết Ký họa Hoa Quỳnh -->
+                            <div class="bg-[#F4EFE6] p-5 md:p-6 rounded-xl relative overflow-hidden border border-[#E2B465]/30">
+                                <div class="flex items-center gap-4 md:gap-6">
+                                    <div class="w-16 h-16 md:w-20 md:h-20 flex-shrink-0 bg-white p-2 rounded-lg shadow-sm border border-gray-200">
+                                        <img src="https://raw.githubusercontent.com/SuperAgento/canifaS_tr-ng-i-nonstop/fc97f5ca5d2a5366899257dd37bfc6b68acf3e87/Ch%C6%B0%C6%A1ng%20III/h%E1%BB%8Da%20ti%E1%BA%BFt%20hoa.png" alt="Hoa Quỳnh ký họa" class="w-full h-full object-contain mix-blend-multiply">
+                                    </div>
+                                    <div>
+                                        <h4 class="text-lg md:text-xl font-custom-title-3 text-[#35322F] mb-1">Ký họa Hoa Quỳnh</h4>
+                                        <p class="text-xs md:text-sm text-gray-600">Loài hoa nở về đêm, thanh tao, tượng trưng ký ức lãng mạn giới tri thức xưa. Nét vẽ đen trắng sắc sảo trên ngực áo.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Họa tiết Nút Thắt -->
+                            <div class="bg-[#F4EFE6] p-5 md:p-6 rounded-xl relative overflow-hidden border border-[#E2B465]/30">
+                                <div class="flex items-center gap-4 md:gap-6">
+                                    <div class="w-16 h-16 md:w-20 md:h-20 flex-shrink-0 bg-white p-2 rounded-lg shadow-sm border border-gray-200">
+                                        <img src="https://raw.githubusercontent.com/SuperAgento/canifaS_tr-ng-i-nonstop/fc97f5ca5d2a5366899257dd37bfc6b68acf3e87/Ch%C6%B0%C6%A1ng%20III/h%E1%BB%8Da%20ti%E1%BA%BFt%20n%C3%BAt%20th%E1%BA%AFt.png" alt="Nút hoa đan" class="w-full h-full object-contain">
+                                    </div>
+                                    <div>
+                                        <h4 class="text-lg md:text-xl font-custom-title-3 text-[#35322F] mb-1">Nút hoa đan (Carrick Bend)</h4>
+                                        <p class="text-xs md:text-sm text-gray-600">Tinh hoa trí tuệ dân gian, sự gắn kết. Thay thế khuy nhựa thành tuyên ngôn thời trang bền vững, tôn vinh thủ công mỹ nghệ.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Khối 2: Gallery Họa Tiết Gạch Bông -->
+                    <div class="mb-24 scroll-animate border-y border-[#88A4A1]/20 py-12 md:py-16">
+                        <div class="text-center mb-10 md:mb-12">
+                            <h4 class="text-2xl md:text-3xl font-custom-title-3 text-[#88A4A1] mb-2">Họa tiết Gạch Bông</h4>
+                            <p class="text-sm md:text-base text-gray-500 font-serif-custom italic uppercase tracking-widest">Sự dung hòa Đông - Tây</p>
+                            <p class="mt-4 text-sm text-gray-700 max-w-2xl mx-auto px-4">Đại diện cho thời kỳ Đông Dương, kỹ thuật Tây Âu được thợ Việt biến tấu. Khi in tràn (All-over print) tạo hiệu ứng kính vạn hoa bắt mắt mang đậm hoài niệm "nền nhà ký ức".</p>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 px-4 md:px-0">
+                            <!-- Gạch bông 1 -->
+                            <div class="bg-white p-4 rounded-xl shadow-md hover:shadow-xl transition-shadow border border-[#F4EFE6] text-center scroll-animate delay-100 group">
+                                <div class="w-full aspect-square overflow-hidden rounded-lg mb-4 bg-[#FDFBF7]">
+                                    <img src="https://raw.githubusercontent.com/SuperAgento/canifaS_tr-ng-i-nonstop/fc97f5ca5d2a5366899257dd37bfc6b68acf3e87/Ch%C6%B0%C6%A1ng%20III/h%E1%BB%8Da%20ti%E1%BA%BFt%201.png" alt="Gạch bông xoắn ốc" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                                </div>
+                                <h5 class="font-bold text-[#E2B465] text-sm md:text-base">Gạch xoắn ốc</h5>
+                                <p class="text-xs text-gray-500 mt-2">Hình vuông với dải màu uốn lượn hướng tâm tông Cam gạch & Xanh Teal.</p>
+                            </div>
+                            
+                            <!-- Gạch bông 2 -->
+                            <div class="bg-white p-4 rounded-xl shadow-md hover:shadow-xl transition-shadow border border-[#F4EFE6] text-center scroll-animate delay-200 group">
+                                <div class="w-full aspect-square overflow-hidden rounded-lg mb-4 bg-[#FDFBF7]">
+                                    <img src="https://raw.githubusercontent.com/SuperAgento/canifaS_tr-ng-i-nonstop/fc97f5ca5d2a5366899257dd37bfc6b68acf3e87/Ch%C6%B0%C6%A1ng%20III/h%E1%BB%8Da%20ti%E1%BA%BFt%202.png" alt="Gạch bông Hoa Sen/Lá" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                                </div>
+                                <h5 class="font-bold text-[#E2B465] text-sm md:text-base">Gạch Hoa Sen/Lá</h5>
+                                <p class="text-xs text-gray-500 mt-2">Bông hoa cách điệu mềm mại đặt gọn trong khung hình học phương Tây.</p>
+                            </div>
+
+                            <!-- Gạch bông 3 -->
+                            <div class="bg-white p-4 rounded-xl shadow-md hover:shadow-xl transition-shadow border border-[#F4EFE6] text-center scroll-animate delay-300 group">
+                                <div class="w-full aspect-square overflow-hidden rounded-lg mb-4 bg-[#FDFBF7]">
+                                    <img src="https://raw.githubusercontent.com/SuperAgento/canifaS_tr-ng-i-nonstop/fc97f5ca5d2a5366899257dd37bfc6b68acf3e87/Ch%C6%B0%C6%A1ng%20III/h%E1%BB%8Da%20ti%E1%BA%BFt%203.png" alt="Gạch bông Tứ thoi" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                                </div>
+                                <h5 class="font-bold text-[#E2B465] text-sm md:text-base">Gạch Tứ thoi</h5>
+                                <p class="text-xs text-gray-500 mt-2">Một viên gạch chứa 4 hoa văn đối xứng với 4 dải màu nhạt cổ điển.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Khối 3: Phụ kiện -->
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center pt-8">
+                        <div class="md:col-span-5 scroll-animate flex flex-col items-center">
+                            <img src="https://raw.githubusercontent.com/SuperAgento/canifaS_tr-ng-i-nonstop/fc97f5ca5d2a5366899257dd37bfc6b68acf3e87/Ch%C6%B0%C6%A1ng%20III/ph%E1%BB%A5%20ki%E1%BB%87n.png" alt="Phụ kiện Macrame" class="w-full h-auto object-contain max-h-[300px] md:max-h-[400px] transition-transform duration-700 hover:scale-105 drop-shadow-[0_10px_20px_rgba(226,180,101,0.2)]">
+                        </div>
+                        <div class="md:col-span-7 text-center md:text-left mt-6 md:mt-0 scroll-animate delay-200">
+                            <span class="bg-[#E2B465] text-white text-[10px] md:text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider inline-block">Macrame & Knotting</span>
+                            <h4 class="text-2xl md:text-3xl font-custom-title-3 text-[#35322F] mt-4 mb-6">Nghệ thuật thắt dây hoàn thiện điểm nhấn</h4>
+                            
+                            <ul class="text-sm md:text-base leading-relaxed text-gray-700 space-y-4 mb-8 text-left">
+                                <li class="flex items-start">
+                                    <span class="text-[#E2B465] mr-3 font-bold mt-1">✦</span>
+                                    <div>
+                                        <span class="font-bold text-[#35322F]">Khuyên tai Nút thắt:</span> Khuyên móc vàng cổ điển, phần thân là cụm nút thắt dây dù màu be sáng. Mang vẻ đẹp nữ tính, thủ công và độc đáo.
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-[#E2B465] mr-3 font-bold mt-1">✦</span>
+                                    <div>
+                                        <span class="font-bold text-[#35322F]">Thắt lưng Dây thừng (Rope Belt):</span> Dây thừng bện thô cỡ lớn thắt nút Carrick khổng lồ ngay eo, bọc kim loại vàng đồng. Biến set đồ thành outfit Streetwear "High-fashion" phá cách.
+                                    </div>
+                                </li>
+                            </ul>
+                            
+                            <button class="border-2 border-[#88A4A1] text-[#88A4A1] text-xs md:text-sm px-6 md:px-8 py-3 font-bold uppercase tracking-widest hover:bg-[#88A4A1] hover:text-white transition-colors w-full md:w-auto">
+                                Khám phá Phụ kiện
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= CHAPTER 4: Placeholder ================= -->
+            <section id="chapter-4" class="chapter-content min-h-[50vh] md:min-h-[60vh] flex flex-col items-center justify-center text-center">
+                <h2 class="font-serif-custom italic text-[#535A3B] text-xl md:text-2xl mb-2">The Pulse</h2>
+                <h1 class="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-4 md:mb-6 text-gray-400">Chương IV: Nhịp Đập</h1>
+                <p class="text-gray-600 max-w-lg text-sm md:text-base">Nội dung bộ sưu tập đang được cập nhật...</p>
+            </section>
+
+        </main>
+        
+        <footer class="text-center py-6 md:py-8 text-xs md:text-sm text-gray-500 border-t border-gray-200 mt-12">
+            <p>&copy; 2026 CANIFA S - The Sensory Flow.</p>
+        </footer>
+    </div>
+
+    <!-- Script for Logic -->
+    <script>
+        // --- INTRO LOGIC ---
+        const introSteps = [
+            {
+                html: `Triết lý cốt lõi của dòng sản phẩm Canifa S không nằm ở việc tái hiện nguyên bản các trang phục cổ xưa một cách khiên cưỡng,<br class="hidden md:block"><span class="italic text-[#5A4634]">mà là quá trình cấy ghép các giá trị di sản lên các vật thể thời trang hiện đại.</span>`,
+                classes: "font-serif-custom text-xl md:text-4xl leading-relaxed max-w-4xl mx-auto text-[#333333]"
+            },
+            {
+                html: `Dựa trên nền tảng của bộ quốc sử <span class="text-[#535A3B] font-semibold">Đại Việt Sử Ký Toàn Thư</span>,<br class="hidden md:block">việc phát triển ý tưởng sản phẩm cần được thực hiện thông qua một quy trình bóc tách các lớp ý nghĩa văn hóa, từ đó chuyển hóa chúng thành những điểm chạm cảm quan.`,
+                classes: "font-serif-custom text-xl md:text-4xl leading-relaxed max-w-4xl mx-auto text-[#333333]"
+            },
+            {
+                html: `"Để quá khứ nuôi dưỡng hiện tại..."`,
+                classes: "font-serif-custom text-3xl md:text-6xl italic text-[#333333]"
+            }
+        ];
+
+        let currentIntroStep = 0;
+        let isTyping = false;
+        let typeTimeout;
+        const introScreen = document.getElementById('intro-screen');
+        const typeContainer = document.getElementById('typewriter-container');
+        const mainApp = document.getElementById('main-app');
+
+        function startTypewriter(stepIndex) {
+            isTyping = true;
+            clearTimeout(typeTimeout);
+            
+            typeContainer.className = introSteps[stepIndex].classes;
+            typeContainer.innerHTML = '';
+            
+            const htmlStr = introSteps[stepIndex].html;
+            let charIndex = 0;
+            let currentHTML = "";
+
+            function typeChar() {
+                if (charIndex < htmlStr.length) {
+                    let char = htmlStr.charAt(charIndex);
+                    currentHTML += char;
+                    
+                    if (char === '<') {
+                        while (charIndex < htmlStr.length - 1) {
+                            charIndex++;
+                            let nextChar = htmlStr.charAt(charIndex);
+                            currentHTML += nextChar;
+                            if (nextChar === '>') break;
+                        }
+                    }
+                    
+                    typeContainer.innerHTML = currentHTML + '<span class="typing-cursor"></span>';
+                    charIndex++;
+                    typeTimeout = setTimeout(typeChar, 15);
+                } else {
+                    isTyping = false;
+                    typeContainer.innerHTML = currentHTML;
+                }
+            }
+            typeChar();
+        }
+
+        introScreen.addEventListener('click', () => {
+            if (isTyping) {
+                clearTimeout(typeTimeout);
+                typeContainer.innerHTML = introSteps[currentIntroStep].html;
+                isTyping = false;
+            } else {
+                currentIntroStep++;
+                if (currentIntroStep < introSteps.length) {
+                    startTypewriter(currentIntroStep);
+                } else {
+                    introScreen.style.opacity = '0';
+                    setTimeout(() => {
+                        introScreen.style.display = 'none';
+                        mainApp.classList.remove('hidden');
+                        window.scrollTo(0,0);
+                    }, 1200);
+                }
+            }
+        });
+
+        startTypewriter(0);
+
+        // --- CHAPTER NAVIGATION LOGIC ---
+        function switchChapter(chapterId) {
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach((item, index) => {
+                if (index === chapterId - 1) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+
+            const chapters = document.querySelectorAll('.chapter-content');
+            chapters.forEach((chapter, index) => {
+                if (index === chapterId - 1) {
+                    chapter.classList.add('active');
+                } else {
+                    chapter.classList.remove('active');
+                }
+            });
+            
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+
+            setTimeout(() => {
+                const activeChapterDOM = document.getElementById(`chapter-${chapterId}`);
+                if(activeChapterDOM) {
+                    const elements = activeChapterDOM.querySelectorAll('.scroll-animate');
+                    elements.forEach(el => {
+                        el.classList.remove('is-visible');
+                        observer.observe(el);
+                    });
+                }
+            }, 50);
+        }
+
+        // --- SCROLL ANIMATION LOGIC ---
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15 
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-animate').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
