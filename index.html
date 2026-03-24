@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CANIFA S - The Sensory Flow</title>
+    <!-- Thêm Favicon hình Hoa Sen (Biểu tượng Việt Nam) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🪷</text></svg>">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
@@ -39,6 +41,14 @@
             font-display: swap;
         }
 
+        @font-face {
+            font-family: 'Cocogoose Vintage';
+            src: url('https://raw.githubusercontent.com/SuperAgento/canifaS_tr-ng-i-nonstop/414b37b73432de245f85b8b8a686e18d4382dd16/Ch%C6%B0%C6%A1ng%20IV/NVN-Cocogoose-Vintage.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
         .font-custom-title {
             font-family: 'KKTT Seraphytes', serif;
         }
@@ -49,6 +59,11 @@
 
         .font-custom-title-3 {
             font-family: 'Classique Saigon', serif;
+        }
+
+        .font-custom-title-4 {
+            font-family: 'Cocogoose Vintage', sans-serif;
+            letter-spacing: 0.05em;
         }
         
         body {
@@ -681,17 +696,182 @@
                 <!-- Next Chapter Trigger -->
                 <div class="chapter-transition mt-24 pt-16 border-t border-[#88A4A1]/10 flex flex-col items-center justify-center cursor-pointer opacity-70 hover:opacity-100 transition-opacity" data-target="4" onclick="switchChapter(4)">
                     <span class="text-[10px] uppercase tracking-widest mb-2 font-semibold text-gray-400">Click để tiếp tục</span>
-                    <h4 class="font-serif-custom italic text-3xl md:text-4xl text-gray-500 mb-4">Chương IV: Nhịp Đập</h4>
-                    <svg class="w-6 h-6 animate-bounce text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                    <h4 class="font-custom-title-4 text-3xl md:text-4xl text-[#7B4A26] mb-4">Chương IV: Nhịp Đập</h4>
+                    <svg class="w-6 h-6 animate-bounce text-[#7B4A26]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
                 </div>
 
             </section>
 
-            <!-- ================= CHAPTER 4: Placeholder ================= -->
-            <section id="chapter-4" class="chapter-content min-h-[50vh] md:min-h-[60vh] flex flex-col items-center justify-center text-center">
-                <h2 class="font-serif-custom italic text-[#535A3B] text-xl md:text-2xl mb-2">The Pulse</h2>
-                <h1 class="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-4 md:mb-6 text-gray-400">Chương IV: Nhịp Đập</h1>
-                <p class="text-gray-600 max-w-lg text-sm md:text-base">Nội dung bộ sưu tập đang được cập nhật...</p>
+            <!-- ================= CHAPTER 4: THE PULSE ================= -->
+            <section id="chapter-4" class="chapter-content">
+                
+                <!-- Hero Title -->
+                <div class="text-center mb-12 md:mb-16 scroll-animate">
+                    <h2 class="font-serif-custom italic text-[#A2B5C6] text-xl md:text-3xl mb-2 md:mb-4">The Pulse</h2>
+                    <h1 class="font-custom-title-4 text-6xl md:text-8xl md:text-[100px] uppercase mb-4 md:mb-6 leading-none text-[#7B4A26]">NHỊP</h1>
+                    <p class="font-custom-title-4 text-3xl md:text-5xl text-[#60A3D9]">Tuyên ngôn thế hệ</p>
+                </div>
+
+                <!-- Story Quote -->
+                <div class="max-w-5xl mx-auto text-center mb-16 md:mb-24 scroll-animate delay-100 px-4">
+                    <p class="font-custom-title-4 text-xl md:text-2xl text-[#7B4A26] leading-loose md:leading-[2.5]">
+                        "Bước vào thời kỳ Đông Dương, nơi cái cũ và cái mới va chạm. Hình ảnh gạch bông quen thuộc dưới chân hay màu vàng nghệ của những bức tường cổ.<br><br>
+                        <span class="text-[#60A3D9]">Đây là chương của sự thấu hiểu, của những kỷ niệm gia đình, nơi cái chất Việt học cách dung hòa với thế giới nhưng vẫn giữ được bản sắc riêng.</span>"
+                    </p>
+                </div>
+
+                <!-- Concept & Color Palette: Center Model Layout -->
+                <div class="scroll-animate mb-16 md:mb-24 border-b border-[#A2B5C6]/30">
+                    <div class="text-center mb-10 pt-4">
+                        <h3 class="text-xs uppercase tracking-widest text-[#A2B5C6] mb-2 font-bold">Bảng màu chủ đạo (The Y2K Street Palette)</h3>
+                        <p class="text-xl md:text-2xl font-serif-custom italic text-[#7B4A26]">Tươi sáng, có độ phai (wash) đặc trưng của phong cách Grunge đường phố.</p>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row gap-10 md:gap-4 items-end justify-center">
+                        
+                        <!-- Left Colors -->
+                        <div class="md:w-1/3 flex flex-col space-y-6 order-2 md:order-1 px-4 pb-8 md:pb-12">
+                            <!-- Color 1 -->
+                            <div class="flex flex-row md:flex-row-reverse items-start gap-4 text-left md:text-right">
+                                <div class="w-12 h-12 rounded-full bg-[#A2B5C6] shadow-inner flex-shrink-0 border border-gray-300"></div>
+                                <div>
+                                    <h4 class="font-bold text-base md:text-lg text-[#60A3D9]">Xanh Khói Denim</h4>
+                                    <p class="text-xs md:text-sm mt-1 text-gray-600">Màu bầu trời thành phố, sự tự do, bụi bặm (distressed) của Y2K.</p>
+                                </div>
+                            </div>
+                            <!-- Color 2 -->
+                            <div class="flex flex-row md:flex-row-reverse items-start gap-4 text-left md:text-right">
+                                <div class="w-12 h-12 rounded-full bg-[#F5F2EB] shadow-inner flex-shrink-0 border border-gray-300"></div>
+                                <div>
+                                    <h4 class="font-bold text-base md:text-lg text-[#7B4A26]">Trắng Đậu Hũ</h4>
+                                    <p class="text-xs md:text-sm mt-1 text-gray-600">Trắng ngà mộc mạc kế thừa từ Chương I, nhưng đưa lên form dáng oversize hiện đại.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Center Model -->
+                        <div class="md:w-1/3 order-1 md:order-2 flex flex-col items-center justify-end relative">
+                            <div class="absolute inset-0 bg-[#A2B5C6]/10 rounded-full scale-90 -z-10 blur-xl opacity-60 mb-12"></div>
+                            <img src="https://raw.githubusercontent.com/SuperAgento/canifaS_tr-ng-i-nonstop/4ffe1c5ce3d7a853a0674e9f4c9a8fb7a9ce8a1f/Ch%C6%B0%C6%A1ng%20IV/m%E1%BA%ABu%20%E1%BA%A3nh.png" alt="Mẫu ảnh Chương IV" class="w-full max-w-[340px] md:max-w-[480px] h-auto object-contain transition-transform duration-700 hover:scale-105 origin-bottom drop-shadow-[0_20px_25px_rgba(96,163,217,0.25)] block">
+                        </div>
+
+                        <!-- Right Colors -->
+                        <div class="md:w-1/3 flex flex-col space-y-6 order-3 px-4 pb-8 md:pb-12">
+                            <!-- Color 3 -->
+                            <div class="flex items-start gap-4 text-left">
+                                <div class="w-12 h-12 rounded-full bg-[#D8CBB6] shadow-inner flex-shrink-0 border border-gray-300"></div>
+                                <div>
+                                    <h4 class="font-bold text-base md:text-lg text-[#7B4A26]">Be Khaki</h4>
+                                    <p class="text-xs md:text-sm mt-1 text-gray-600">Tính ứng dụng cao (utility), nền hoàn hảo để tôn lên đồ họa nổi bật trên áo.</p>
+                                </div>
+                            </div>
+                            <!-- Color 4 -->
+                            <div class="flex items-start gap-4 text-left">
+                                <div class="w-12 h-12 rounded-full shadow-inner flex-shrink-0" style="background: linear-gradient(135deg, #60A3D9 50%, #7B4A26 50%);"></div>
+                                <div>
+                                    <h4 class="font-bold text-base md:text-lg text-[#60A3D9]">Ghế Nhựa & Nâu Cà Phê</h4>
+                                    <p class="text-xs md:text-sm mt-1 text-gray-600">Dải màu nhấn (Accent) mang tính Pop-art, bứt phá tạo hiệu ứng thị giác mạnh mẽ.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <!-- Products & Motifs Showcase -->
+                <div class="mt-16 md:mt-32">
+                    <h3 class="text-center text-2xl md:text-3xl font-black uppercase tracking-widest mb-10 md:mb-16 scroll-animate text-[#60A3D9]">Văn hóa vỉa hè</h3>
+                    
+                    <!-- General Description -->
+                    <div class="max-w-4xl mx-auto text-center mb-16 scroll-animate px-4">
+                        <h4 class="font-custom-title-4 text-2xl md:text-3xl text-[#7B4A26] mb-4">Vốn dĩ là Việt</h4>
+                        <p class="text-sm md:text-base leading-relaxed text-gray-700 mb-6">Chương IV không sử dụng hoa văn cung đình cổ đại. Di sản ở đây chính là <strong class="text-[#60A3D9]">"Văn hóa bình dân"</strong>. Tôn vinh form dáng Oversize rộng rãi, phi giới tính (Unisex), tối đa hóa sự thoải mái để "xào nấu" lại di sản thành <strong class="text-[#7B4A26]">"Street-Heritage"</strong>.</p>
+                    </div>
+
+                    <!-- Item 1: Áo Hoodie Cà Phê -->
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 mb-16 md:mb-24 items-center">
+                        <div class="md:col-span-5 order-2 md:order-1 scroll-animate flex flex-col items-center">
+                            <img src="https://raw.githubusercontent.com/SuperAgento/canifaS_tr-ng-i-nonstop/060a043a4352f51ed7163d8e41b0a675f7c122d1/Ch%C6%B0%C6%A1ng%20IV/cafe.png" alt="Áo Hoodie Cà Phê" class="w-full h-auto object-contain max-h-[300px] md:max-h-[400px] transition-transform duration-700 hover:scale-105 drop-shadow-lg">
+                            <div class="text-center mt-6">
+                                <h4 class="font-bold uppercase tracking-widest text-[#60A3D9] text-sm md:text-base">Cyber/Wash Graphic Hoodie</h4>
+                                <p class="text-sm text-[#7B4A26] font-serif-custom italic">"Áo Hoodie Cà Phê"</p>
+                            </div>
+                        </div>
+                        <div class="md:col-span-7 order-1 md:order-2 space-y-6 md:space-y-8 scroll-animate delay-200">
+                            <!-- Phân tích Áo -->
+                            <div class="bg-[#F5F2EB] p-5 md:p-8 rounded-xl relative overflow-hidden border-l-4 border-[#A2B5C6]">
+                                <h4 class="text-xl md:text-2xl font-custom-title-4 text-[#7B4A26] mb-2">Form & Xử lý màu</h4>
+                                <p class="text-xs md:text-sm leading-relaxed text-gray-700">Áo hoodie form rộng trùm hông, tay bồng, dây rút cổ áo vàng chanh phá cách. Bề mặt vải được xử lý nhuộm Tie-dye/Wash loang lổ màu Xanh Khói tạo hiệu ứng thị giác như những bức tường cũ phai màu.</p>
+                            </div>
+                            <!-- Phân tích Họa tiết -->
+                            <div class="bg-[#F5F2EB] p-5 md:p-8 rounded-xl relative overflow-hidden border-l-4 border-[#7B4A26]">
+                                <h4 class="text-xl md:text-2xl font-custom-title-4 text-[#60A3D9] mb-2">Họa tiết Cà Phê Phin & Sữa Đá</h4>
+                                <p class="text-xs md:text-sm leading-relaxed text-gray-700">In tả thực (hyper-realism) ly cà phê sữa đá và chiếc phin inox quen thuộc. Đại diện cho nhịp sống thường nhật, hối hả nhưng vẫn có nét "chill" tạo sự đối lập thú vị với nền áo loang lổ.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 2: Áo Thun Trà Đá -->
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 mb-16 md:mb-24 items-center">
+                        <div class="md:col-span-7 space-y-6 md:space-y-8 scroll-animate">
+                            <!-- Phân tích Áo -->
+                            <div class="bg-[#F5F2EB] p-5 md:p-8 rounded-xl relative overflow-hidden border-l-4 border-[#D8CBB6]">
+                                <h4 class="text-xl md:text-2xl font-custom-title-4 text-[#7B4A26] mb-2">Oversized Drop-shoulder</h4>
+                                <p class="text-xs md:text-sm leading-relaxed text-gray-700">Áo phông basic dáng suông rộng, tay lửng qua cùi chỏ trên nền Trắng Đậu Hũ mộc mạc. Thiết kế tối giản tối đa để dồn toàn bộ sự chú ý vào đồ họa.</p>
+                            </div>
+                            <!-- Phân tích Họa tiết -->
+                            <div class="bg-[#F5F2EB] p-5 md:p-8 rounded-xl relative overflow-hidden border-l-4 border-[#60A3D9]">
+                                <h4 class="text-xl md:text-2xl font-custom-title-4 text-[#60A3D9] mb-2">Họa tiết Trà Đá Ghế Nhựa</h4>
+                                <p class="text-xs md:text-sm leading-relaxed text-gray-700">Hai ly trà đá đặt trên "ghế nhựa xanh huyền thoại". Biểu tượng của văn hóa "chém gió", giao lưu kết nối không phân biệt tầng lớp. Đồ họa mang hơi hướng nghệ thuật Pop-art vui nhộn.</p>
+                            </div>
+                        </div>
+                        <div class="md:col-span-5 scroll-animate delay-200 flex flex-col items-center">
+                            <img src="https://raw.githubusercontent.com/SuperAgento/canifaS_tr-ng-i-nonstop/060a043a4352f51ed7163d8e41b0a675f7c122d1/Ch%C6%B0%C6%A1ng%20IV/trada.png" alt="Áo Thun Trà Đá" class="w-full h-auto object-contain max-h-[300px] md:max-h-[400px] transition-transform duration-700 hover:scale-105 drop-shadow-lg">
+                            <div class="text-center mt-6">
+                                <h4 class="font-bold uppercase tracking-widest text-[#60A3D9] text-sm md:text-base">Oversized T-Shirt</h4>
+                                <p class="text-sm text-[#7B4A26] font-serif-custom italic">"Áo Thun Trà Đá"</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Khối 3: Phụ kiện Street-Heritage -->
+                    <div class="border-t border-[#A2B5C6]/30 pt-16 mt-20">
+                        <div class="text-center mb-12 scroll-animate">
+                            <span class="bg-[#60A3D9] text-white text-[10px] md:text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider inline-block">Quà tặng kèm khi mua cả set</span>
+                            <h4 class="text-2xl md:text-3xl font-custom-title-4 text-[#7B4A26] mt-4 mb-4">Street-Heritage Y2K Accessories</h4>
+                            <p class="text-sm md:text-base text-gray-700 max-w-2xl mx-auto">Sự châm biếm mang tính thời trang, phá vỡ mọi quy chuẩn ăn mặc cứng nhắc. Tuyên ngôn mạnh mẽ nhất của thế hệ: <strong class="text-[#60A3D9]">"Mặc thứ mình thích, tự hào về thứ mình có"</strong>.</p>
+                        </div>
+
+                        <div class="flex flex-col md:flex-row justify-center items-center gap-12 md:gap-8 px-4">
+                            <!-- Accessory 1: Mũ -->
+                            <div class="flex flex-col items-center text-center scroll-animate delay-100 md:w-1/3">
+                                <img src="https://raw.githubusercontent.com/SuperAgento/canifaS_tr-ng-i-nonstop/060a043a4352f51ed7163d8e41b0a675f7c122d1/Ch%C6%B0%C6%A1ng%20IV/m%C5%A9.png" alt="Mũ Lưỡi Trai Denim" class="w-40 h-40 md:w-48 md:h-48 object-contain mb-4 transition-transform duration-500 hover:scale-110 drop-shadow-md">
+                                <h5 class="font-bold text-[#60A3D9] uppercase tracking-wider text-sm">Mũ Lưỡi Trai Denim</h5>
+                                <p class="text-xs text-gray-600 mt-2 max-w-[200px]">Denim bạc màu, chỉ chần nổi khỏe khoắn. Hoàn thiện tổng thể "bụi bặm".</p>
+                            </div>
+                            <!-- Accessory 2: Tổ ong -->
+                            <div class="flex flex-col items-center text-center scroll-animate delay-200 md:w-1/3">
+                                <img src="https://raw.githubusercontent.com/SuperAgento/canifaS_tr-ng-i-nonstop/060a043a4352f51ed7163d8e41b0a675f7c122d1/Ch%C6%B0%C6%A1ng%20IV/d%C3%A9p%20t%E1%BB%95%20ong.png" alt="Dép Tổ Ong Huyền Thoại" class="w-48 h-48 md:w-56 md:h-56 object-contain mb-4 transition-transform duration-500 hover:scale-110 drop-shadow-xl scale-110">
+                                <h5 class="font-bold text-[#7B4A26] uppercase tracking-wider text-sm mt-2">Dép Tổ Ong Huyền Thoại</h5>
+                                <p class="text-xs text-gray-600 mt-2 max-w-[200px]">Tái sinh với màu Be. Trở thành item "chất lừ", bất cần khi mix cùng quần Cargo.</p>
+                            </div>
+                            <!-- Accessory 3: Tông lào -->
+                            <div class="flex flex-col items-center text-center scroll-animate delay-300 md:w-1/3">
+                                <img src="https://raw.githubusercontent.com/SuperAgento/canifaS_tr-ng-i-nonstop/060a043a4352f51ed7163d8e41b0a675f7c122d1/Ch%C6%B0%C6%A1ng%20IV/d%C3%A9p%20t%C3%B4ng%20l%C3%A0o.png" alt="Dép Tông Lào Tie-dye" class="w-40 h-40 md:w-48 md:h-48 object-contain mb-4 transition-transform duration-500 hover:scale-110 drop-shadow-md">
+                                <h5 class="font-bold text-[#60A3D9] uppercase tracking-wider text-sm">Dép Tông Lào</h5>
+                                <p class="text-xs text-gray-600 mt-2 max-w-[200px]">Màu loang Gradient Pastel. Sự lười biếng có gu (effortless chic) chuẩn Y2K.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Back to Top Trigger -->
+                <div class="chapter-transition mt-24 pt-16 border-t border-[#A2B5C6]/20 flex flex-col items-center justify-center cursor-pointer opacity-70 hover:opacity-100 transition-opacity" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                    <span class="text-[10px] uppercase tracking-widest mb-2 font-semibold text-gray-400">Hoàn thành Trải nghiệm</span>
+                    <h4 class="font-serif-custom italic text-2xl md:text-3xl text-[#60A3D9] mb-4">Trở Về Đầu Trang</h4>
+                    <svg class="w-6 h-6 animate-bounce text-[#60A3D9]" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="transform: rotate(180deg);"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                </div>
+
             </section>
 
         </main>
@@ -707,15 +887,15 @@
         const introSteps = [
             {
                 html: `Triết lý cốt lõi của dòng sản phẩm Canifa S không nằm ở việc tái hiện nguyên bản các trang phục cổ xưa một cách khiên cưỡng,<br class="hidden md:block"><span class="italic text-[#5A4634]">mà là quá trình cấy ghép các giá trị di sản lên các vật thể thời trang hiện đại.</span>`,
-                classes: "font-serif-custom text-xl md:text-3xl lg:text-4xl leading-relaxed text-[#333333]"
+                classes: "font-serif-custom text-xl md:text-3xl lg:text-4xl leading-relaxed max-w-4xl mx-auto w-full px-4 text-center text-[#333333]"
             },
             {
                 html: `Dựa trên nền tảng của bộ quốc sử <span class="text-[#535A3B] font-semibold">Đại Việt Sử Ký Toàn Thư</span>,<br class="hidden md:block">việc phát triển ý tưởng sản phẩm cần được thực hiện thông qua một quy trình bóc tách các lớp ý nghĩa văn hóa, từ đó chuyển hóa chúng thành những điểm chạm cảm quan.`,
-                classes: "font-serif-custom text-xl md:text-3xl lg:text-4xl leading-relaxed text-[#333333]"
+                classes: "font-serif-custom text-xl md:text-3xl lg:text-4xl leading-relaxed max-w-4xl mx-auto w-full px-4 text-center text-[#333333]"
             },
             {
                 html: `"Để quá khứ nuôi dưỡng hiện tại..."`,
-                classes: "font-serif-custom text-3xl md:text-5xl lg:text-6xl italic text-[#333333]"
+                classes: "font-serif-custom text-3xl md:text-5xl lg:text-6xl italic w-full px-4 text-center text-[#333333]"
             }
         ];
 
