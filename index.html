@@ -171,10 +171,12 @@
 <body>
 
     <!-- ================= INTRO SEQUENCE ================= -->
-    <div id="intro-screen" class="fixed inset-0 z-50 bg-[#FDFBF7] flex items-center justify-center cursor-pointer intro-layer px-4 text-center">
+    <div id="intro-screen" class="fixed inset-0 z-50 bg-[#FDFBF7] flex items-center justify-center cursor-pointer intro-layer px-4 text-center overflow-hidden">
         
         <!-- Text container for Typewriter effect -->
-        <p id="typewriter-container"></p>
+        <div class="w-full max-w-4xl mx-auto flex flex-col items-center justify-center">
+            <p id="typewriter-container" class="w-full text-center"></p>
+        </div>
 
         <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center opacity-60 animate-pulse text-[#333333]">
             <span class="text-xs uppercase tracking-widest mb-2 font-mono">Click để tiếp tục</span>
@@ -190,12 +192,15 @@
         <header class="sticky top-0 z-40 bg-[#FDFBF7]/95 backdrop-blur-sm border-b border-[#5A4634]/20">
             <div class="max-w-7xl mx-auto px-4 md:px-6 py-4 md:py-6">
                 <div class="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-6">
-                    <a href="#" class="block shrink-0">
-                        <img src="https://raw.githubusercontent.com/SuperAgento/canifaS_tr-ng-i-nonstop/86593ef73697b1d11bacee8b7bc5214503df0ae1/620876290_17842912956683674_2500424784282779294_n.jpg" alt="CANIFA S Logo" class="h-10 md:h-12 object-contain mix-blend-multiply">
+                    
+                    <!-- Phần Logo đã được cắt viền trên/dưới và phóng to -->
+                    <a href="#" class="block shrink-0 overflow-hidden flex items-center justify-center w-28 md:w-36 h-10 md:h-12">
+                        <img src="https://raw.githubusercontent.com/SuperAgento/canifaS_tr-ng-i-nonstop/86593ef73697b1d11bacee8b7bc5214503df0ae1/620876290_17842912956683674_2500424784282779294_n.jpg" alt="CANIFA S Logo" class="w-full h-full object-cover mix-blend-multiply scale-[1.3] md:scale-[1.5]">
                     </a>
                     
-                    <nav class="w-full md:w-auto overflow-x-auto pb-2 md:pb-0">
-                        <ul class="flex space-x-6 md:space-x-12 min-w-max text-xs md:text-sm uppercase tracking-widest font-semibold px-2">
+                    <!-- Menu gọn gàng, sát nhau, không cuộn ngang -->
+                    <nav class="w-full md:w-auto pb-2 md:pb-0">
+                        <ul class="flex flex-wrap justify-center md:justify-end gap-x-4 gap-y-2 md:gap-x-6 text-[10px] md:text-[11px] lg:text-xs uppercase tracking-widest font-semibold px-2">
                             <li class="nav-item active" onclick="switchChapter(1)">Chương I: The Origin</li>
                             <li class="nav-item" onclick="switchChapter(2)">Chương II: The Sovereignty</li>
                             <li class="nav-item" onclick="switchChapter(3)">Chương III: The Fusion</li>
@@ -339,7 +344,16 @@
                             <p class="text-sm md:text-base leading-relaxed text-gray-700 mb-6 md:mb-8">Món quà tặng kèm giới hạn khi sở hữu trọn bộ set trang phục Chương I. Mang trọn vẹn tinh thần và biểu tượng quyền lực văn minh Đông Sơn dạo bước phố phường.</p>
                         </div>
                     </div>
+
                 </div>
+
+                <!-- Next Chapter Trigger -->
+                <div class="chapter-transition mt-24 pt-16 border-t border-[#5A4634]/10 flex flex-col items-center justify-center cursor-pointer opacity-70 hover:opacity-100 transition-opacity" data-target="2" onclick="switchChapter(2)">
+                    <span class="text-[10px] uppercase tracking-widest mb-2 font-semibold text-gray-400">Click để tiếp tục</span>
+                    <h4 class="font-custom-title-2 text-3xl md:text-4xl text-[#1E2A38] mb-4">Chương II: Độc Tôn</h4>
+                    <svg class="w-6 h-6 animate-bounce text-[#1E2A38]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                </div>
+
             </section>
 
             <!-- ================= CHAPTER 2: THE SOVEREIGNTY ================= -->
@@ -361,15 +375,15 @@
                 </div>
 
                 <!-- Concept & Color Palette: Center Model Layout -->
-                <div class="scroll-animate mb-16 md:mb-24 border-b border-[#6B4C3A]/20 pb-16">
-                    <div class="text-center mb-10">
+                <div class="scroll-animate mb-16 md:mb-24 border-b border-[#6B4C3A]/20">
+                    <div class="text-center mb-10 pt-4">
                         <h3 class="text-xs uppercase tracking-widest text-[#9EABA2] mb-2 font-bold">Phong thái & Cảm giác</h3>
                         <p class="text-xl md:text-2xl font-serif-custom italic text-[#6B4C3A]">Quý tộc phố thị, tĩnh lặng và uy quyền.</p>
                     </div>
 
-                    <div class="flex flex-col md:flex-row gap-10 md:gap-4 items-center justify-center">
+                    <div class="flex flex-col md:flex-row gap-10 md:gap-4 items-end justify-center">
                         <!-- Left Colors -->
-                        <div class="md:w-1/3 flex flex-col space-y-6 order-2 md:order-1 px-4">
+                        <div class="md:w-1/3 flex flex-col space-y-6 order-2 md:order-1 px-4 pb-8 md:pb-12">
                             <div class="flex flex-row md:flex-row-reverse items-start gap-4 text-left md:text-right">
                                 <div class="w-12 h-12 rounded-full bg-[#9EABA2] shadow-inner flex-shrink-0 border border-gray-300"></div>
                                 <div>
@@ -386,13 +400,13 @@
                             </div>
                         </div>
 
-                        <!-- Center Model -->
-                        <div class="md:w-1/3 order-1 md:order-2 flex flex-col items-center justify-center">
-                            <img src="https://raw.githubusercontent.com/SuperAgento/canifaS_tr-ng-i-nonstop/d4ea3fa36960f54afce9b31bc9bb9b736d45cbba/Ch%C6%B0%C6%A1ng%20II/m%E1%BA%ABu%20%E1%BA%A3nh.png" alt="Mẫu ảnh Chương II" class="w-full max-w-[260px] md:max-w-[320px] h-auto object-contain transition-transform duration-700 hover:scale-105 drop-shadow-2xl">
+                        <!-- Center Model (Đáy chạm thanh ngang) -->
+                        <div class="md:w-1/3 order-1 md:order-2 flex flex-col items-center justify-end">
+                            <img src="https://raw.githubusercontent.com/SuperAgento/canifaS_tr-ng-i-nonstop/d4ea3fa36960f54afce9b31bc9bb9b736d45cbba/Ch%C6%B0%C6%A1ng%20II/m%E1%BA%ABu%20%E1%BA%A3nh.png" alt="Mẫu ảnh Chương II" class="w-full max-w-[280px] md:max-w-[380px] h-auto object-contain transition-transform duration-700 hover:scale-105 origin-bottom drop-shadow-2xl block">
                         </div>
 
                         <!-- Right Colors -->
-                        <div class="md:w-1/3 flex flex-col space-y-6 order-3 px-4">
+                        <div class="md:w-1/3 flex flex-col space-y-6 order-3 px-4 pb-8 md:pb-12">
                             <div class="flex items-start gap-4 text-left">
                                 <div class="w-12 h-12 rounded-full bg-[#1E2A38] shadow-inner flex-shrink-0"></div>
                                 <div>
@@ -488,6 +502,14 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Next Chapter Trigger -->
+                <div class="chapter-transition mt-24 pt-16 border-t border-[#6B4C3A]/10 flex flex-col items-center justify-center cursor-pointer opacity-70 hover:opacity-100 transition-opacity" data-target="3" onclick="switchChapter(3)">
+                    <span class="text-[10px] uppercase tracking-widest mb-2 font-semibold text-gray-400">Click để tiếp tục</span>
+                    <h4 class="font-custom-title-3 text-3xl md:text-4xl text-[#35322F] mb-4">Chương III: Giao</h4>
+                    <svg class="w-6 h-6 animate-bounce text-[#35322F]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                </div>
+
             </section>
 
             <!-- ================= CHAPTER 3: THE FUSION ================= -->
@@ -509,16 +531,16 @@
                 </div>
 
                 <!-- Concept & Color Palette: Center Model Layout -->
-                <div class="scroll-animate mb-16 md:mb-24 border-b border-[#E2B465]/30 pb-16">
-                    <div class="text-center mb-10">
+                <div class="scroll-animate mb-16 md:mb-24 border-b border-[#E2B465]/30">
+                    <div class="text-center mb-10 pt-4">
                         <h3 class="text-xs uppercase tracking-widest text-[#88A4A1] mb-2 font-bold">Bảng màu chủ đạo (The Fusion Palette)</h3>
                         <p class="text-xl md:text-2xl font-serif-custom italic text-[#35322F]">Lãng mạn, va chạm Đông - Tây trên tông màu Pastel làm mờ (Washed out).</p>
                     </div>
 
-                    <div class="flex flex-col md:flex-row gap-10 md:gap-4 items-center justify-center">
+                    <div class="flex flex-col md:flex-row gap-10 md:gap-4 items-end justify-center">
                         
                         <!-- Left Colors (Căn lề phải trên Desktop) -->
-                        <div class="md:w-1/3 flex flex-col space-y-6 order-2 md:order-1 px-4">
+                        <div class="md:w-1/3 flex flex-col space-y-6 order-2 md:order-1 px-4 pb-8 md:pb-12">
                             <!-- Color 1 -->
                             <div class="flex flex-row md:flex-row-reverse items-start gap-4 text-left md:text-right">
                                 <div class="w-12 h-12 rounded-full bg-[#F4EFE6] shadow-inner flex-shrink-0 border border-gray-300"></div>
@@ -537,15 +559,15 @@
                             </div>
                         </div>
 
-                        <!-- Center Model -->
-                        <div class="md:w-1/3 order-1 md:order-2 flex flex-col items-center justify-center relative">
+                        <!-- Center Model (Đáy chạm thanh ngang, phóng to lên) -->
+                        <div class="md:w-1/3 order-1 md:order-2 flex flex-col items-center justify-end relative">
                             <!-- Hiệu ứng viền họa tiết phía sau ảnh model -->
-                            <div class="absolute inset-0 bg-[#F4EFE6] rounded-full scale-90 -z-10 blur-xl opacity-60"></div>
-                            <img src="https://raw.githubusercontent.com/SuperAgento/canifaS_tr-ng-i-nonstop/fc97f5ca5d2a5366899257dd37bfc6b68acf3e87/Ch%C6%B0%C6%A1ng%20III/m%E1%BA%ABu%20%E1%BA%A3nh.png" alt="Mẫu ảnh Chương III" class="w-full max-w-[280px] md:max-w-[340px] h-auto object-contain transition-transform duration-700 hover:scale-105 drop-shadow-[0_20px_25px_rgba(226,180,101,0.25)]">
+                            <div class="absolute inset-0 bg-[#F4EFE6] rounded-full scale-90 -z-10 blur-xl opacity-60 mb-12"></div>
+                            <img src="https://raw.githubusercontent.com/SuperAgento/canifaS_tr-ng-i-nonstop/fc97f5ca5d2a5366899257dd37bfc6b68acf3e87/Ch%C6%B0%C6%A1ng%20III/m%E1%BA%ABu%20%E1%BA%A3nh.png" alt="Mẫu ảnh Chương III" class="w-full max-w-[340px] md:max-w-[480px] h-auto object-contain transition-transform duration-700 hover:scale-105 origin-bottom drop-shadow-[0_20px_25px_rgba(226,180,101,0.25)] block">
                         </div>
 
                         <!-- Right Colors (Căn lề trái) -->
-                        <div class="md:w-1/3 flex flex-col space-y-6 order-3 px-4">
+                        <div class="md:w-1/3 flex flex-col space-y-6 order-3 px-4 pb-8 md:pb-12">
                             <!-- Color 3 -->
                             <div class="flex items-start gap-4 text-left">
                                 <div class="w-12 h-12 rounded-full bg-[#88A4A1] shadow-inner flex-shrink-0"></div>
@@ -656,6 +678,13 @@
                     </div>
                 </div>
 
+                <!-- Next Chapter Trigger -->
+                <div class="chapter-transition mt-24 pt-16 border-t border-[#88A4A1]/10 flex flex-col items-center justify-center cursor-pointer opacity-70 hover:opacity-100 transition-opacity" data-target="4" onclick="switchChapter(4)">
+                    <span class="text-[10px] uppercase tracking-widest mb-2 font-semibold text-gray-400">Click để tiếp tục</span>
+                    <h4 class="font-serif-custom italic text-3xl md:text-4xl text-gray-500 mb-4">Chương IV: Nhịp Đập</h4>
+                    <svg class="w-6 h-6 animate-bounce text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                </div>
+
             </section>
 
             <!-- ================= CHAPTER 4: Placeholder ================= -->
@@ -678,15 +707,15 @@
         const introSteps = [
             {
                 html: `Triết lý cốt lõi của dòng sản phẩm Canifa S không nằm ở việc tái hiện nguyên bản các trang phục cổ xưa một cách khiên cưỡng,<br class="hidden md:block"><span class="italic text-[#5A4634]">mà là quá trình cấy ghép các giá trị di sản lên các vật thể thời trang hiện đại.</span>`,
-                classes: "font-serif-custom text-xl md:text-4xl leading-relaxed max-w-4xl mx-auto text-[#333333]"
+                classes: "font-serif-custom text-xl md:text-3xl lg:text-4xl leading-relaxed text-[#333333]"
             },
             {
                 html: `Dựa trên nền tảng của bộ quốc sử <span class="text-[#535A3B] font-semibold">Đại Việt Sử Ký Toàn Thư</span>,<br class="hidden md:block">việc phát triển ý tưởng sản phẩm cần được thực hiện thông qua một quy trình bóc tách các lớp ý nghĩa văn hóa, từ đó chuyển hóa chúng thành những điểm chạm cảm quan.`,
-                classes: "font-serif-custom text-xl md:text-4xl leading-relaxed max-w-4xl mx-auto text-[#333333]"
+                classes: "font-serif-custom text-xl md:text-3xl lg:text-4xl leading-relaxed text-[#333333]"
             },
             {
                 html: `"Để quá khứ nuôi dưỡng hiện tại..."`,
-                classes: "font-serif-custom text-3xl md:text-6xl italic text-[#333333]"
+                classes: "font-serif-custom text-3xl md:text-5xl lg:text-6xl italic text-[#333333]"
             }
         ];
 
@@ -811,6 +840,7 @@
         document.querySelectorAll('.scroll-animate').forEach(el => {
             observer.observe(el);
         });
+
     </script>
 </body>
 </html>
